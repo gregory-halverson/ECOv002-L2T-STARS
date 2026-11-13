@@ -7,7 +7,7 @@ import numpy as np
 from ECOv002_CMR import download_ECOSTRESS_granule
 from ECOv002_granules import open_granule
 from ECOv002_L2T_STARS import generate_L2T_STARS_runconfig, L2T_STARS
-from ECOv002_L2T_STARS.L2TSTARSConfig import L2TSTARSConfig
+from ECOv002_L2T_STARS import L2TSTARSConfig
 
 # Disable logger output
 logging.getLogger().handlers = []

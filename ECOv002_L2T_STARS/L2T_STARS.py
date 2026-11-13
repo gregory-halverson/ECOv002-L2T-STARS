@@ -39,10 +39,7 @@ from .exit_codes import *
 from .runconfig import ECOSTRESSRunConfig
 from .timer import Timer
 
-with open(join(abspath(dirname(__file__)), "version.txt")) as f:
-    version = f.read()
-
-__version__ = version
+from .version import __version__
 
 L2T_STARS_TEMPLATE = join(abspath(dirname(__file__)), "L2T_STARS.xml")
 DEFAULT_WORKING_DIRECTORY = "."
