@@ -24,7 +24,7 @@ from scipy import stats
 from harmonized_landsat_sentinel import CMRServerUnreachable
 from harmonized_landsat_sentinel import HLSLandsatMissing, HLSSentinelMissing, HLS2Connection
 from harmonized_landsat_sentinel import HLSTileNotAvailable, HLSSentinelNotAvailable, HLSLandsatNotAvailable, HLSDownloadFailed, HLSNotAvailable
-from harmonized_landsat_sentinel import HLSBandNotAcquired, HLS2CMR, CMR_SEARCH_URL
+from harmonized_landsat_sentinel import HLSBandNotAcquired, HLS2Connection, CMR_SEARCH_URL
 
 from ECOv002_granules import L2TLSTE, L2TSTARS, NDVI_COLORMAP, ALBEDO_COLORMAP
 
@@ -645,7 +645,7 @@ def retrieve_STARS_sources(
         HLS_end_date: date,
         VIIRS_start_date: date,
         VIIRS_end_date: date,
-        HLS_connection: HLS2CMR,
+        HLS_connection: HLS2Connection,
         VIIRS_connection: VNP43NRT):
     logger.info(
         f"retrieving HLS sources for tile {cl.place(tile)} from {cl.time(HLS_start_date)} to {cl.time(HLS_end_date)}")
@@ -699,7 +699,7 @@ def generate_STARS_inputs(
         NDVI_fine_directory: str,
         albedo_coarse_directory: str,
         albedo_fine_directory: str,
-        HLS_connection: HLS2CMR,
+        HLS_connection: HLS2Connection,
         NDVI_VIIRS_connection: VIIRSDownloaderNDVI,
         albedo_VIIRS_connection: VIIRSDownloaderAlbedo,
         calibrate_fine: True):
@@ -1006,7 +1006,7 @@ def process_STARS_product(
         L2T_STARS_browse_filename: str,
         metadata: dict,
         prior: Prior,
-        HLS_connection: HLS2CMR,
+        HLS_connection: HLS2Connection,
         NDVI_VIIRS_connection: VIIRSDownloaderNDVI,
         albedo_VIIRS_connection: VIIRSDownloaderAlbedo,
         using_prior: bool = False,
@@ -1495,7 +1495,7 @@ def L2T_STARS(
 
         logger.info(f"connecting to CMR Search server: {CMR_SEARCH_URL}")
         try:
-            HLS_connection = HLS2CMR(
+            HLS_connection = HLS2Connection(
                 working_directory=working_directory,
                 download_directory=HLS_download_directory,
                 products_directory=HLS_products_directory,
