@@ -22,7 +22,7 @@ from rasters import Raster, RasterGeometry
 from scipy import stats
 
 from harmonized_landsat_sentinel import CMRServerUnreachable
-from harmonized_landsat_sentinel import HLSLandsatMissing, HLSSentinelMissing, HLS
+from harmonized_landsat_sentinel import HLSLandsatMissing, HLSSentinelMissing, HLS2Connection
 from harmonized_landsat_sentinel import HLSTileNotAvailable, HLSSentinelNotAvailable, HLSLandsatNotAvailable, HLSDownloadFailed, HLSNotAvailable
 from harmonized_landsat_sentinel import HLSBandNotAcquired, HLS2CMR, CMR_SEARCH_URL
 
@@ -482,7 +482,7 @@ def generate_NDVI_coarse_image(date_UTC: Union[date, str], VIIRS_connection: VII
     return coarse_image
 
 
-def generate_NDVI_fine_image(date_UTC: Union[date, str], tile: str, HLS_connection: HLS) -> Raster:
+def generate_NDVI_fine_image(date_UTC: Union[date, str], tile: str, HLS_connection: HLS2Connection) -> Raster:
     fine_image = HLS_connection.NDVI(tile=tile, date_UTC=date_UTC)
     fine_image = rt.where(fine_image == 0, np.nan, fine_image)
 
@@ -496,7 +496,7 @@ def generate_albedo_coarse_image(date_UTC: Union[date, str], VIIRS_connection: V
     return coarse_image
 
 
-def generate_albedo_fine_image(date_UTC: Union[date, str], tile: str, HLS_connection: HLS) -> Raster:
+def generate_albedo_fine_image(date_UTC: Union[date, str], tile: str, HLS_connection: HLS2Connection) -> Raster:
     fine_image = HLS_connection.albedo(tile=tile, date_UTC=date_UTC)
     fine_image = rt.where(fine_image == 0, np.nan, fine_image)
 
