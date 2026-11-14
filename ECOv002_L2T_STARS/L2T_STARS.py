@@ -1495,7 +1495,6 @@ def L2T_STARS(
             HLS_connection = HLS2Connection(
                 working_directory=working_directory,
                 download_directory=HLS_download_directory,
-                # products_directory=HLS_products_directory,
                 target_resolution=target_resolution
             )
         except CMRServerUnreachable as e:
@@ -1503,7 +1502,7 @@ def L2T_STARS(
             raise AncillaryServerUnreachable(
                 f"unable to connect to CMR Search server: {CMR_SEARCH_URL}")
 
-        if not HLS_connection.tile_grid.land(tile=tile):
+        if HLS_connection.tile_grid is not None and not HLS_connection.tile_grid.land(tile=tile):
             raise LandFilter(f"Sentinel tile {tile} is not on land")
 
         if use_VNP43NRT:
