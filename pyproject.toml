@@ -45,6 +45,7 @@ dependencies = [
     "sentinel-tiles",
     "six",
     "tensorflow",
+    "VCD43NRT",
     "untangle",
     "xmltodict"
 ]
