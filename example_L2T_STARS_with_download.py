@@ -10,17 +10,20 @@ from ECOv002_L2T_STARS import generate_L2T_STARS_runconfig, L2T_STARS
 from ECOv002_L2T_STARS import L2TSTARSConfig
 
 # Disable logger output
-logging.getLogger().handlers = []
+# logging.getLogger().handlers = []
+
+logger = logging.getLogger(__name__)
 
 # Set working directory
 working_directory = expanduser(join("~", "data", "ECOv002_testing"))
 makedirs(working_directory, exist_ok=True)
 
+logger.info("retrieving collection 2 L2T LSTE granule")
 # Retrieve LST LSTE granule from CMR API for target date
 L2T_LSTE_granule = download_ECOSTRESS_granule(
     product="L2T_LSTE",
     tile="11SPS",
-    aquisition_date="2026-10-10",
+    aquisition_date="2026-10-27",
     parent_directory=working_directory
 )
 
@@ -28,7 +31,7 @@ L2T_LSTE_granule = download_ECOSTRESS_granule(
 L2T_STARS_granule = download_ECOSTRESS_granule(
     product="L2T_STARS",
     tile="11SPS",
-    aquisition_date="2026-10-06",
+    aquisition_date="2026-10-23",
     parent_directory=working_directory
 )
 
@@ -36,7 +39,7 @@ L2T_STARS_granule = download_ECOSTRESS_granule(
 L2T_STARS_expected_output = download_ECOSTRESS_granule(
     product="L2T_STARS",
     tile="11SPS",
-    aquisition_date="2026-10-10",
+    aquisition_date="2026-10-27",
     parent_directory=working_directory
 )
 
